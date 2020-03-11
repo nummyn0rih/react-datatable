@@ -15,10 +15,10 @@ export class App extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return state;
-};
+// const mapStateToProps = state => {
+// 	return state;
+// };
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

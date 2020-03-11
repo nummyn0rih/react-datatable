@@ -1,0 +1,8 @@
+.sort-icon {
+  margin-right: 5px;
+}
+
+.sort-icon-desc {
+  transform: rotate(180deg);
+  transform-origin: center center;
+}
