@@ -2,7 +2,8 @@ import axios from 'axios';
 import { createAction } from 'redux-actions';
 
 // export const sortUsers = createAction('USERS_SORT');
-// export const filterUsers = createAction('USERS_FILTER');
+export const searchUsers = createAction('USERS_SEARCH');
+export const cleanSearch = createAction('USERS_SEARCH_CLEAN');
 
 export const fetchUsersRequest = createAction('USERS_FETCH_REQUEST');
 export const fetchUsersSuccess = createAction('USERS_FETCH_SUCCESS');

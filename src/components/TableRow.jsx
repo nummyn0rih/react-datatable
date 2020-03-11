@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class TableRow extends React.Component {
+export class TableRow extends Component {
 	render() {
 		const { user } = this.props;
 

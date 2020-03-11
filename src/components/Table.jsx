@@ -1,29 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TableRow from './TableRow';
 import { fetchUsers } from '../actions';
 import routes from '../routes';
 
-const mapStateToProps = state => {
-	const {
-		users: { byId, allIds },
-	} = state;
-	const users = allIds.map(id => byId[id]);
-
-	return { users };
-};
-
-const actionCreators = {
-	fetchUsers,
-};
-
-class Table extends React.Component {
-	handleSort = type => () => {
-		const { sortUsers, orderBy, byId } = this.props;
-		const order = orderBy[type];
-		sortUsers({ type, order, byId });
-	};
-
+export class Table extends Component {
 	componentDidMount() {
 		const { fetchUsers } = this.props;
 		fetchUsers(routes.dataSmall);
@@ -52,4 +33,17 @@ class Table extends React.Component {
 	}
 }
 
-export default connect(mapStateToProps, actionCreators)(Table);
+const mapStateToProps = state => {
+	const {
+		users: { byId, modifiedIds },
+	} = state;
+	const users = modifiedIds.map(id => byId[id]);
+
+	return { users };
+};
+
+const mapDispatchToProps = {
+	fetchUsers,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

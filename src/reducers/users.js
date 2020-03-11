@@ -11,12 +11,39 @@ const users = handleActions(
 				(acc, user) => ({ ...acc, [user.id]: user }),
 				{}
 			);
-			return { byId: { ...byId, ...users }, allIds: [...allIds, ...ids] };
+			const newAllIds = [...ids, ...allIds];
+			return {
+				byId: { ...byId, ...users },
+				allIds: newAllIds,
+				modifiedIds: newAllIds,
+			};
+		},
+		[actions.searchUsers](state, { payload: { search } }) {
+			const { byId, allIds } = state;
+			if (!search) {
+				return { ...state, modifiedIds: allIds };
+			}
+
+			const filtredUsers = allIds.filter(id => {
+				const values = Object.values(byId[id]).map(i => i.toString().toLowerCase());
+				for (const value of values) {
+					if (value.includes(search.toLowerCase())) {
+						return true;
+					}
+				}
+				return false;
+			});
+			return { ...state, modifiedIds: filtredUsers };
+		},
+		[actions.cleanSearch](state) {
+			const { allIds } = state;
+			return { ...state, modifiedIds: allIds };
 		},
 	},
 	{
 		byId: {},
 		allIds: [],
+		modifiedIds: [],
 	}
 );
 
