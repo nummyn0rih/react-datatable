@@ -1,5 +1,11 @@
 import React from 'react';
 
+const Loader = () => (
+	<div className="list-group-loader">
+		<div className="loader">asdfasdfasdf</div>
+	</div>
+);
+
 const TableRow = ({ user }) => {
 	return (
 		<tr>
@@ -16,4 +22,9 @@ const TableRow = ({ user }) => {
 	);
 };
 
-export default TableRow;
+const RowComponent = ({ user, loading }) => {
+	return loading ? <Loader /> : <TableRow user={user} loading={loading} />;
+};
+
+export default RowComponent;
+// export default TableRow;

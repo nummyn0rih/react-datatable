@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TableRow from './TableRow';
+import UsersList from './UsersList';
 import IconSort from './IconSort';
 import { fetchUsers, sortUsers } from '../actions';
 import routes from '../routes';
@@ -31,27 +31,20 @@ export class Table extends Component {
 	}
 
 	render() {
-		const { users } = this.props;
+		console.log('BOOOM!');
 		return (
 			<table className="table table-hover table-striped table-dark">
 				<thead>{this.renderTH()}</thead>
 				<tbody>
-					{users.length > 0 &&
-						users.map(user => <TableRow user={user} key={user.id} />)}
+					<UsersList />
 				</tbody>
 			</table>
 		);
 	}
 }
 
-const mapStateToProps = state => {
-	const {
-		users: { byId, modifiedIds },
-	} = state;
-	const tableHeaders = ['', 'Имя', 'Фамилия', 'Email', 'Телефон'];
-	const users = modifiedIds.map(id => byId[id]);
-	return { users, tableHeaders };
-};
+const tableHeaders = ['', 'Имя', 'Фамилия', 'Email', 'Телефон'];
+const mapStateToProps = () => ({ tableHeaders });
 
 const mapDispatchToProps = {
 	fetchUsers,
