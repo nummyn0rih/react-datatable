@@ -27,7 +27,7 @@ export class Table extends Component {
 
 	componentDidMount() {
 		const { fetchUsers } = this.props;
-		fetchUsers(routes.randomUsers);
+		fetchUsers(routes.randomUsers(20));
 	}
 
 	render() {
