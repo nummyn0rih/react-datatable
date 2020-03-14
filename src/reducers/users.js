@@ -1,19 +1,23 @@
 import { handleActions } from 'redux-actions';
-import uniq from 'lodash.uniq';
+import uniqueId from 'lodash.uniqueid';
 import * as actions from '../actions';
 
 const users = handleActions(
 	{
-		[actions.fetchUsersSuccess](state, { payload }) {
+		[actions.fetchUsersSuccess](state, { payload: { results } }) {
 			const { byId, allIds } = state;
-			const ids = uniq(payload.map(user => user.id));
-			const users = payload.reduce(
+			const users = results.map(user => ({
+				...user,
+				id: user.id.value || uniqueId(),
+			}));
+			const ids = users.map(user => user.id);
+			const newAllIds = [...allIds, ...ids];
+			const newById = users.reduce(
 				(acc, user) => ({ ...acc, [user.id]: user }),
 				{}
 			);
-			const newAllIds = [...ids, ...allIds];
 			return {
-				byId: { ...byId, ...users },
+				byId: { ...byId, ...newById },
 				allIds: newAllIds,
 				modifiedIds: newAllIds,
 			};
@@ -27,7 +31,7 @@ const users = handleActions(
 			const filtredUsers = allIds.filter(id => {
 				const values = Object.values(byId[id]).map(i => i.toString().toLowerCase());
 				for (const value of values) {
-					if (value.includes(search.toLowerCase())) {
+					if (value.includes(search.trim().toLowerCase())) {
 						return true;
 					}
 				}
@@ -38,6 +42,10 @@ const users = handleActions(
 		[actions.cleanSearch](state) {
 			const { allIds } = state;
 			return { ...state, modifiedIds: allIds };
+		},
+		[actions.sortUsers](state, { payload: { type } }) {
+			console.log(type);
+			return state;
 		},
 	},
 	{
