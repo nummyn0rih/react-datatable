@@ -18,16 +18,19 @@ export class Table extends Component {
 		const { columns, activeDirection } = this.props;
 		return (
 			<tr>
-				{columns.map(col => (
-					<th
-						onClick={col.name !== 'avatar' ? this.handleSortUsers(col.name) : null}
-						scope="col"
-						key={col.name}
-					>
-						{col.title === activeDirection && <IconSort />}
-						{col.title}
-					</th>
-				))}
+				{columns.map(
+					col =>
+						col.display && (
+							<th
+								onClick={col.name !== 'avatar' ? this.handleSortUsers(col.name) : null}
+								scope="col"
+								key={col.name}
+							>
+								{col.title === activeDirection && <IconSort />}
+								{col.name !== 'avatar' ? col.title : null}
+							</th>
+						)
+				)}
 			</tr>
 		);
 	};

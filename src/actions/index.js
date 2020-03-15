@@ -4,6 +4,7 @@ import { createAction } from 'redux-actions';
 export const sortUsers = createAction('USERS_SORT');
 export const searchUsers = createAction('USERS_SEARCH');
 export const cleanSearch = createAction('USERS_SEARCH_CLEAN');
+export const changeDisplayCheck = createAction('CHECK_DISPLAY_CHANGE');
 
 export const fetchUsersRequest = createAction('USERS_FETCH_REQUEST');
 export const fetchUsersSuccess = createAction('USERS_FETCH_SUCCESS');
@@ -16,7 +17,7 @@ export const fetchUsers = url => async dispatch => {
 		dispatch(fetchUsersSuccess(response.data));
 	} catch (e) {
 		dispatch(fetchUsersFailure());
-		console.log(e);
+		console.error(e);
 		throw e;
 	}
 };

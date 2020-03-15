@@ -10,3 +10,17 @@
 .media img {
   border-radius: 50%;
 }
+
+.check-form {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background: #343A40;
+  color: #fff;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+  color: #fff;
+  border-color: #28A745;
+  background-color: #2C8143;
+}

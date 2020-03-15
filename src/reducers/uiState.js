@@ -12,14 +12,21 @@ const uiState = handleActions(
 			);
 			return { columns: newColumns, activeDirection: type };
 		},
+		[actions.changeDisplayCheck](state, { payload: { name } }) {
+			const { columns } = state;
+			const newColumns = columns.map(col =>
+				col.name === name ? { ...col, display: !col.display } : col
+			);
+			return { ...state, columns: newColumns };
+		},
 	},
 	{
 		columns: [
-			{ name: 'avatar', title: '', direction: '' },
-			{ name: 'firstName', title: 'Имя', direction: 'asc' },
-			{ name: 'lastName', title: 'Фамилия', direction: 'asc' },
-			{ name: 'email', title: 'Email', direction: 'asc' },
-			{ name: 'phone', title: 'Телефон', direction: 'asc' },
+			{ name: 'avatar', title: 'Аватар', direction: '', display: true },
+			{ name: 'firstName', title: 'Имя', direction: 'asc', display: true },
+			{ name: 'lastName', title: 'Фамилия', direction: 'asc', display: true },
+			{ name: 'email', title: 'Email', direction: 'asc', display: true },
+			{ name: 'phone', title: 'Телефон', direction: 'asc', display: true },
 		],
 		activeDirection: 'none',
 	}
