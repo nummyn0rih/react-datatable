@@ -14,8 +14,8 @@ const TableRow = ({ user }) => {
 					<img src={user.picture.medium} className="mr-3" alt="userAvatar" />
 				</div>
 			</th>
-			<td>{user.name.first}</td>
-			<td>{user.name.last}</td>
+			<td>{user.firstName}</td>
+			<td>{user.lastName}</td>
 			<td>{user.email}</td>
 			<td>{user.phone}</td>
 		</tr>

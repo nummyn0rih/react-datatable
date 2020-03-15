@@ -9,6 +9,8 @@ const users = handleActions(
 			const users = results.map(user => ({
 				...user,
 				id: user.id.value || uniqueId(),
+				firstName: user.name.first,
+				lastName: user.name.last,
 			}));
 			const ids = users.map(user => user.id);
 			const newAllIds = [...allIds, ...ids];
@@ -43,9 +45,36 @@ const users = handleActions(
 			const { allIds } = state;
 			return { ...state, modifiedIds: allIds };
 		},
-		[actions.sortUsers](state, { payload: { type } }) {
-			console.log(type);
-			return state;
+		[actions.sortUsers](state, { payload: { type, direction } }) {
+			const { allIds, byId } = state;
+			switch (direction) {
+				case 'asc': {
+					const sortedIds = [...allIds].sort((a, b) => {
+						if (byId[a][type] > byId[b][type]) return 1;
+						if (byId[a][type] < byId[b][type]) return -1;
+						return 0;
+					});
+					return {
+						...state,
+						allIds: sortedIds,
+						modifiedIds: sortedIds,
+					};
+				}
+				case 'desc': {
+					const sortedIds = [...allIds].sort((a, b) => {
+						if (byId[a][type] < byId[b][type]) return 1;
+						if (byId[a][type] > byId[b][type]) return -1;
+						return 0;
+					});
+					return {
+						...state,
+						allIds: sortedIds,
+						modifiedIds: sortedIds,
+					};
+				}
+				default:
+					throw new Error(`Unknown direction state: '${direction}'!`);
+			}
 		},
 	},
 	{

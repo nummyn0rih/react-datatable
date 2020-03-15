@@ -7,18 +7,25 @@ import routes from '../routes';
 
 export class Table extends Component {
 	handleSortUsers = type => () => {
-		const { sortUsers } = this.props;
-		sortUsers({ type });
+		const { sortUsers, columns } = this.props;
+		const direction = columns.reduce((acc, col) =>
+			col.name === type ? col.direction : acc
+		);
+		sortUsers({ type, direction });
 	};
 
 	renderTH = () => {
-		const { tableHeaders } = this.props;
+		const { columns, activeDirection } = this.props;
 		return (
 			<tr>
-				{tableHeaders.map(header => (
-					<th onClick={this.handleSortUsers(header)} scope="col" key={header}>
-						{header && <IconSort />}
-						{header}
+				{columns.map(col => (
+					<th
+						onClick={col.name !== 'avatar' ? this.handleSortUsers(col.name) : null}
+						scope="col"
+						key={col.name}
+					>
+						{col.title === activeDirection && <IconSort />}
+						{col.title}
 					</th>
 				))}
 			</tr>
@@ -31,7 +38,6 @@ export class Table extends Component {
 	}
 
 	render() {
-		console.log('BOOOM!');
 		return (
 			<table className="table table-hover table-striped table-dark">
 				<thead>{this.renderTH()}</thead>
@@ -43,8 +49,10 @@ export class Table extends Component {
 	}
 }
 
-const tableHeaders = ['', 'Имя', 'Фамилия', 'Email', 'Телефон'];
-const mapStateToProps = () => ({ tableHeaders });
+const mapStateToProps = ({ uiState: { columns, activeDirection } }) => ({
+	columns,
+	activeDirection,
+});
 
 const mapDispatchToProps = {
 	fetchUsers,

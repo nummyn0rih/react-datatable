@@ -7,7 +7,8 @@
     "jsx-quotes": [
       1,
       "prefer-double"
-    ]
+    ],
+    "no-console": "error"
   },
   "plugins": [
     "prettier"
