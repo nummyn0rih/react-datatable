@@ -1,9 +1,12 @@
 import React from 'react';
 
-const IconSort = () => {
+const IconSort = props => {
+	const cn =
+		props.direction === 'asc' ? 'sort-icon' : 'sort-icon sort-icon-desc';
+
 	return (
 		<svg
-			className="sort-icon"
+			className={cn}
 			xmlns="http://www.w3.org/2000/svg"
 			height="24"
 			viewBox="0 0 24 24"

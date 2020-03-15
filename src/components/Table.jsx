@@ -26,7 +26,7 @@ export class Table extends Component {
 								scope="col"
 								key={col.name}
 							>
-								{col.title === activeDirection && <IconSort />}
+								{col.name === activeDirection && <IconSort direction={col.direction} />}
 								{col.name !== 'avatar' ? col.title : null}
 							</th>
 						)
