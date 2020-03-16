@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import uniqueId from 'lodash.uniqueid';
 
 class TableRow extends Component {
 	render() {
-		const { user, display } = this.props;
+		const { user, columns } = this.props;
 		return (
 			<tr>
-				{display.avatar && (
-					<th scope="row">
-						<div className="media">
-							<img src={user.picture.medium} className="mr-3" alt="userAvatar" />
-						</div>
-					</th>
+				{columns.map(
+					col =>
+						col.display && (
+							<td key={uniqueId()}>
+								{col.name === 'avatar' ? (
+									<div className="media">
+										<img src={user.picture.medium} className="mr-3" alt="userAvatar" />
+									</div>
+								) : (
+									user[col.name]
+								)}
+							</td>
+						)
 				)}
-				{display.firstName && <td>{user.firstName}</td>}
-				{display.lastName && <td>{user.lastName}</td>}
-				{display.email && <td>{user.email}</td>}
-				{display.phone && <td>{user.phone}</td>}
 			</tr>
 		);
 	}
 }
 
-const mapStateToProps = ({ uiState: { columns } }) => {
-	const display = columns.reduce(
-		(acc, col) => ({ ...acc, [col.name]: col.display }),
-		{}
-	);
-	return { display };
-};
+const mapStateToProps = ({ uiState: { columns } }) => ({ columns });
 
 export default connect(mapStateToProps, null)(TableRow);

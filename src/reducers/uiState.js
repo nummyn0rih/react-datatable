@@ -19,6 +19,9 @@ const uiState = handleActions(
 			);
 			return { ...state, columns: newColumns };
 		},
+		[actions.dragColumn](state, { payload: { items } }) {
+			return { ...state, columns: items };
+		},
 	},
 	{
 		columns: [
