@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import CheckForm from './CheckForm';
@@ -8,11 +8,11 @@ import '../App.css';
 export class App extends Component {
 	render() {
 		return (
-			<Fragment>
+			<div className="container">
 				<Navbar />
 				<CheckForm />
 				<Table />
-			</Fragment>
+			</div>
 		);
 	}
 }
