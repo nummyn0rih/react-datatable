@@ -15,29 +15,29 @@ export class Radio extends Component {
 
 		return (
 			<div className="radio">
-				<div class="custom-control custom-radio">
+				<div className="custom-control custom-radio">
 					<input
 						onChange={this.handleChangeMethod('randomuser')}
 						type="radio"
-						class="custom-control-input"
+						className="custom-control-input"
 						id="randomuser"
 						name="radio-stacked"
 						checked={randomuser}
 					/>
-					<label class="custom-control-label" for="randomuser">
+					<label className="custom-control-label" htmlFor="randomuser">
 						randomuser.me
 					</label>
 				</div>
-				<div class="custom-control custom-radio">
+				<div className="custom-control custom-radio">
 					<input
 						onChange={this.handleChangeMethod('faker')}
 						type="radio"
-						class="custom-control-input"
+						className="custom-control-input"
 						id="faker"
 						name="radio-stacked"
 						checked={faker}
 					/>
-					<label class="custom-control-label" for="faker">
+					<label className="custom-control-label" htmlFor="faker">
 						faker
 					</label>
 				</div>

@@ -6,9 +6,20 @@ import { fetchUsers } from '../actions';
 import routes from '../routes';
 
 export class Table extends Component {
-	componentDidMount() {
-		const { fetchUsers } = this.props;
-		fetchUsers(routes.randomUsers(20));
+	componentDidUpdate() {
+		const { loadingMethodState, fetchUsers } = this.props;
+		switch (loadingMethodState) {
+			case 'randomuser': {
+				fetchUsers(routes.randomUsers(20));
+				break;
+			}
+			case 'faker': {
+				console.log('object');
+				break;
+			}
+			default:
+				throw new Error(`Unknown loading method: '${loadingMethodState}'!`);
+		}
 	}
 
 	render() {
@@ -25,8 +36,10 @@ export class Table extends Component {
 	}
 }
 
+const mapStateToProps = ({ loadingMethodState }) => ({ loadingMethodState });
+
 const mapDispatchToProps = {
 	fetchUsers,
 };
 
-export default connect(null, mapDispatchToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
