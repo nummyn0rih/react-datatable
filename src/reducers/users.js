@@ -24,6 +24,9 @@ const users = handleActions(
 				modifiedIds: newAllIds,
 			};
 		},
+		[actions.createUsers](state, { payload }) {
+			return state;
+		},
 		[actions.searchUsers](state, { payload: { search } }) {
 			const { byId, allIds } = state;
 			if (!search) {

@@ -19,8 +19,20 @@
   color: #fff;
 }
 
+.custom-control-label {
+  color: #fff;
+}
+
 .custom-control-input:checked~.custom-control-label::before {
   color: #fff;
   border-color: #28A745;
   background-color: #2C8143;
+}
+
+.radio {
+  display: flex;
+}
+
+.custom-radio {
+  margin-left: 45px;
 }

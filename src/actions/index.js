@@ -7,6 +7,9 @@ export const cleanSearch = createAction('USERS_SEARCH_CLEAN');
 export const changeDisplayCheck = createAction('CHECK_DISPLAY_CHANGE');
 export const dragColumn = createAction('COLUMN_DRAG');
 
+export const changeLoadingMethod = createAction('LOADING_METHOD_CHANGE');
+export const createUsers = createAction('USERS_CREATE');
+
 export const fetchUsersRequest = createAction('USERS_FETCH_REQUEST');
 export const fetchUsersSuccess = createAction('USERS_FETCH_SUCCESS');
 export const fetchUsersFailure = createAction('USERS_FETCH_FAILURE');
