@@ -6,6 +6,9 @@ export const searchUsers = createAction('USERS_SEARCH');
 export const cleanSearch = createAction('USERS_SEARCH_CLEAN');
 export const changeDisplayCheck = createAction('CHECK_DISPLAY_CHANGE');
 export const dragColumn = createAction('COLUMN_DRAG');
+export const displayContextMenu = createAction('CONTEXT_MENU_DISPLAY');
+export const changeTableCellValue = createAction('TABLE_CELL_VALUE_CHANGE');
+export const removeTableCellValue = createAction('TABLE_CELL_VALUE_REMOVE');
 
 export const fetchUsersRequest = createAction('USERS_FETCH_REQUEST');
 export const fetchUsersSuccess = createAction('USERS_FETCH_SUCCESS');

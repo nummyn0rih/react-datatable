@@ -28,7 +28,7 @@
     "eslint": "node_modules/.bin/eslint src/"
   },
   "lint-staged": {
-    "src/**/*.{js, jsx, json, css}": [
+    "src/**/*.{js, jsx, json}": [
       "prettier --write",
       "git add"
     ]

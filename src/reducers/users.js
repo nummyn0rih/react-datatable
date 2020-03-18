@@ -76,6 +76,21 @@ const users = handleActions(
 					throw new Error(`Unknown direction state: '${direction}'!`);
 			}
 		},
+		[actions.changeTableCellValue](
+			state,
+			{ payload: { userId, userPropType, contextMenu } }
+		) {
+			const { byId } = state;
+			const updatedUser = { ...byId[userId], [userPropType]: contextMenu };
+			const newById = { ...byId, [userId]: updatedUser };
+			return { ...state, byId: newById };
+		},
+		[actions.removeTableCellValue](state, { payload: { userId, userPropType } }) {
+			const { byId } = state;
+			const updatedUser = { ...byId[userId], [userPropType]: '' };
+			const newById = { ...byId, [userId]: updatedUser };
+			return { ...state, byId: newById };
+		},
 	},
 	{
 		byId: {},

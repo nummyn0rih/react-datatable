@@ -24,3 +24,21 @@
   border-color: #28A745;
   background-color: #2C8143;
 }
+
+
+
+.contextMenu {
+  position: fixed;
+  border-radius: .25rem;
+}
+
+.card {
+  padding: 15px;
+}
+
+.btn-wrap {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+

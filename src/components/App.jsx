@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import CheckForm from './CheckForm';
 import Table from './Table';
+import ContextMenu from './ContextMenu';
 import '../App.css';
 
 export class App extends Component {
@@ -12,6 +13,7 @@ export class App extends Component {
 				<Navbar />
 				<CheckForm />
 				<Table />
+				<ContextMenu />
 			</div>
 		);
 	}

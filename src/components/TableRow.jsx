@@ -6,11 +6,11 @@ class TableRow extends Component {
 	render() {
 		const { user, columns } = this.props;
 		return (
-			<tr>
+			<tr data-id={user.id}>
 				{columns.map(
 					col =>
 						col.display && (
-							<td key={uniqueId()}>
+							<td key={uniqueId()} data-name={col.name}>
 								{col.name === 'avatar' ? (
 									<div className="media">
 										<img src={user.picture.medium} className="mr-3" alt="userAvatar" />
