@@ -50,9 +50,8 @@ const users = handleActions(
 			switch (direction) {
 				case 'asc': {
 					const sortedIds = [...allIds].sort((a, b) => {
-						if (byId[a][type] > byId[b][type]) return 1;
-						if (byId[a][type] < byId[b][type]) return -1;
-						return 0;
+						if (byId[a][type] === byId[b][type]) return 0;
+						return byId[a][type] > byId[b][type] ? 1 : -1;
 					});
 					return {
 						...state,
@@ -62,9 +61,8 @@ const users = handleActions(
 				}
 				case 'desc': {
 					const sortedIds = [...allIds].sort((a, b) => {
-						if (byId[a][type] < byId[b][type]) return 1;
-						if (byId[a][type] > byId[b][type]) return -1;
-						return 0;
+						if (byId[a][type] === byId[b][type]) return 0;
+						return byId[a][type] > byId[b][type] ? -1 : 1;
 					});
 					return {
 						...state,
